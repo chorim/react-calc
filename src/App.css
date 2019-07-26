@@ -11,6 +11,7 @@ th {
   padding: 20px 10px 20px 0;
   text-align: right;
   font-size: 2rem;
+  background: #2D3031;
 }
 td {
   padding: 20px;
@@ -20,4 +21,7 @@ td {
 }
 tr td:last-child {
   background: #FF9F0C;
+}
+.first-button {
+  background: #414444;
 }
