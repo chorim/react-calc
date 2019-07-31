@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
+import { Button } from './components/Button'
+
+const useOperator = () => {
+
+}
+
+const useNumber = () => {
+
+  const [number, setNumber] = useState(0)
+
+  const plusNumber = (value: number) => setNumber(number + value)
+  const minusNumber = (input: number) => setNumber(number - input)
+
+  useEffect(() => {
+    document.title = String(number)
+  })
+  return [plusNumber, minusNumber]
+}
 
 const Calc = () => {
+  const [plusNumber, minusNumber] = useNumber()
   return (
     <table>
       <thead>
@@ -9,33 +28,33 @@ const Calc = () => {
       </thead>
       <tbody>
       <tr>
-        <td className="first-button">AC</td>
-        <td className="first-button">+/-</td>
-        <td className="first-button">%</td>
-        <td>÷</td>
+        <Button className="first-button">AC</Button>
+        <Button className="first-button">+/-</Button>
+        <Button className="first-button">%</Button>
+        <Button>÷</Button>
       </tr>
       <tr>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-        <td>X</td>
+        <Button>7</Button>
+        <Button>8</Button>
+        <Button>9</Button>
+        <Button>X</Button>
       </tr>
       <tr>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td>-</td>
+        <Button>4</Button>
+        <Button>5</Button>
+        <Button>6</Button>
+        <Button handlerClick={() => minusNumber(23)}>-</Button>
       </tr>
       <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>+</td>
+        <Button>1</Button>
+        <Button>2</Button>
+        <Button>3</Button>
+        <Button>+</Button>
       </tr>
       <tr>
-        <td colSpan={2}>0</td>
-        <td>.</td>
-        <td>=</td>
+        <Button colSpan={2}>0</Button>
+        <Button>.</Button>
+        <Button>=</Button>
       </tr>
       </tbody>
     </table>
