@@ -12,7 +12,7 @@ const Calc = () => {
         <td className="first-button">AC</td>
         <td className="first-button">+/-</td>
         <td className="first-button">%</td>
-        <td>??</td>
+        <td>÷</td>
       </tr>
       <tr>
         <td>7</td>
