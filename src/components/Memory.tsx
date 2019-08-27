@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { evaluate } from 'mathjs'
 
+type state = (updateValue: string) => void
 interface MemoryParams {
   data: string
-  state: any
+  state: state
 }
 
 export const Memory = (props: MemoryParams) => {
 
-  const [memory, setMemory] = useState<string>('')
+  const [memory, setMemory] = useState('0')
 
   const resetAction = () => {
-    setMemory('')
+    setMemory('0')
     alert('Clear')
   }
 
@@ -20,20 +21,8 @@ export const Memory = (props: MemoryParams) => {
     alert(props.data + " saved")
   }
 
-  const minusAction = () => {
-    if (memory.length === 0) {
-      alert("Memory error")
-      return
-    }
-    props.state( evaluate(`${props.data} - ${memory}`) )
-  }
-  const plusAction = () => {
-    if (memory.length === 0) {
-      alert("Memory error")
-      return
-    }
-    props.state( evaluate(`${props.data} + ${memory}`) )
-  }
+  const minusAction = () => props.state(evaluate(`${props.data} - ${memory}`))
+  const plusAction = () => props.state(evaluate(`${props.data} + ${memory}`))
 
   return (
     <div>

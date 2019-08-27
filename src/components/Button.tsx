@@ -2,7 +2,14 @@ import React from 'react'
 import { evaluate } from 'mathjs'
 import { Memory } from './Memory'
 
-export const Button = (props: any) => {
+type onPress = (updateValue: string) => void
+
+interface ButtonParams {
+  onPress: onPress
+  counter: string
+}
+
+export const Button = (props: ButtonParams) => {
 
   const { onPress, counter } = props
 
@@ -15,7 +22,7 @@ export const Button = (props: any) => {
     else onPress(counter + value)
   }
 
-  const operator = (value: string) => {
+  const operator = (value: 'AC' | '-' | '+/-' | '=') => {
     switch (value) {
       case 'AC': onPress(''); break
       case '=':
@@ -40,38 +47,38 @@ export const Button = (props: any) => {
       <table> 
         <thead>
           <tr>
-            <th colSpan={4}> {counter} </th>
+            <th colSpan={4}>{counter}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td className="first-td" onClick={ () => {operator('AC')}}>AC</td>
-            <td onClick={ () => {operator('+/-')} } className="first-td">+/-</td>
-            <td onClick={ () => {addToCounter('%')} } className="first-td">%</td>
-            <td onClick={ () => {addToCounter('/')} }>÷</td>
+            <td className="first-td" onClick={ () => operator('AC')}>AC</td>
+            <td onClick={() => operator('+/-')} className="first-td">+/-</td>
+            <td onClick={() => addToCounter('%')} className="first-td">%</td>
+            <td onClick={() => addToCounter('/')}>÷</td>
           </tr>
           <tr>
-            <td onClick={ () => {addToCounter('7')} }>7</td>
-            <td onClick={ () => {addToCounter('8')} }>8</td>
-            <td onClick={ () => {addToCounter('9')} }>9</td>
-            <td onClick={ () => {addToCounter('*')} }>X</td>
+            <td onClick={() => addToCounter('7')}>7</td>
+            <td onClick={() => addToCounter('8')}>8</td>
+            <td onClick={() => addToCounter('9')}>9</td>
+            <td onClick={() => addToCounter('*')}>X</td>
           </tr>
           <tr>
-            <td onClick={ () => {addToCounter('4')} }>4</td>
-            <td onClick={ () => {addToCounter('5')} }>5</td>
-            <td onClick={ () => {addToCounter('6')} }>6</td>
-            <td onClick={ () => {addToCounter('-')} }>-</td>
+            <td onClick={() => addToCounter('4')}>4</td>
+            <td onClick={() => addToCounter('5')}>5</td>
+            <td onClick={() => addToCounter('6')}>6</td>
+            <td onClick={() => addToCounter('-')}>-</td>
           </tr>
           <tr>
-            <td onClick={ () => {addToCounter('1')} }>1</td>
-            <td onClick={ () => {addToCounter('2')} }>2</td>
-            <td onClick={ () => {addToCounter('3')} }>3</td>
-            <td onClick={ () => {addToCounter('+')} }>+</td>
+            <td onClick={() => addToCounter('1')}>1</td>
+            <td onClick={() => addToCounter('2')}>2</td>
+            <td onClick={() => addToCounter('3')}>3</td>
+            <td onClick={() => addToCounter('+')}>+</td>
           </tr>
           <tr>
-            <td onClick={ () => {addToCounter('0')} } colSpan={2}>0</td>
-            <td onClick={ () => {addToCounter('.')} }>.</td>
-            <td onClick={ () => {operator('=')} }>=</td>
+            <td onClick={() => addToCounter('0')} colSpan={2}>0</td>
+            <td onClick={() => addToCounter('.')}>.</td>
+            <td onClick={() => operator('=')}>=</td>
           </tr>
         </tbody>
       </table>
