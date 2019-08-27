@@ -1,5 +1,6 @@
 import React from 'react'
 import { evaluate } from 'mathjs'
+import { Memory } from './Memory'
 
 export const Button = (props: any) => {
 
@@ -74,6 +75,7 @@ export const Button = (props: any) => {
           </tr>
         </tbody>
       </table>
+      <Memory data={counter} state={onPress}/>
     </div>
   )
 }
